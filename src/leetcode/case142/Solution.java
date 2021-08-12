@@ -1,7 +1,7 @@
 package leetcode.case142;
 
 
-import com.myself.leetcode.ListNode;
+import leetcode.ListNode;
 
 public class Solution {
     public ListNode detectCycle(ListNode head) {

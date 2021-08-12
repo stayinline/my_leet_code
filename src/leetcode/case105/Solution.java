@@ -1,7 +1,7 @@
 package leetcode.case105;
 
 
-import com.myself.leetcode.TreeNode;
+import leetcode.TreeNode;
 
 public class Solution {
 

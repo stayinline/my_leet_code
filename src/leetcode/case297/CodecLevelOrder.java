@@ -1,8 +1,9 @@
 package leetcode.case297;
 
 
-import com.myself.leetcode.TreeNode;
-import com.myself.leetcode.TreeUtils;
+
+import leetcode.TreeNode;
+import leetcode.TreeUtils;
 
 import java.util.LinkedList;
 import java.util.Queue;

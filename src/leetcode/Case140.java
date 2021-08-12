@@ -1,6 +1,5 @@
 package leetcode;
 
-import org.assertj.core.util.Lists;
 
 import java.util.*;
 
@@ -94,10 +93,6 @@ public class Case140 {
 
     public static void main(String[] args) {
         String s="catsanddog";
-
-        ArrayList<String> wordDicts = Lists.newArrayList("cat", "cats", "and", "sand", "dog");
-
-        List<String> ret = new Solution().wordBreak(s, wordDicts);
 
 
     }

@@ -67,5 +67,9 @@ public class Case138 {
         return headNew;
     }
 
+    public static void main(String[] args) {
+        System.out.println(1 << 13);
+    }
+
 
 }

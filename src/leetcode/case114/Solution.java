@@ -1,7 +1,7 @@
 package leetcode.case114;
 
 
-import com.myself.leetcode.TreeNode;
+import leetcode.TreeNode;
 
 public class Solution {
     public void flatten(TreeNode root) {

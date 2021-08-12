@@ -1,7 +1,7 @@
 package leetcode.case297;
 
 
-import com.myself.leetcode.TreeNode;
+import leetcode.TreeNode;
 
 import java.util.LinkedList;
 
