@@ -39,7 +39,6 @@ public class Case124 {
         System.out.println(i);
 
         Spliterator.OfInt spliterator = Arrays.spliterator(arr);
-        spliterator.
 
         System.out.println(spliterator);
     }
