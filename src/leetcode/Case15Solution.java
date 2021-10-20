@@ -1,8 +1,6 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Case15Solution {
 
@@ -10,28 +8,23 @@ public class Case15Solution {
         Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
-            List<List<Integer>> two = twoSum(nums, i + 1, 0 - nums[i], false);
+            List<List<Integer>> two = twoSum(nums, i + 1, 0 - nums[i]);
             for (List<Integer> tuple : two) {
                 tuple.add(nums[i]);
                 res.add(tuple);
             }
             // 跳过第一个数字重复的情况，否则会出现重复结果
             while (i < nums.length - 1 && nums[i] == nums[i + 1]) i++;
-
         }
         return res;
     }
 
 
-    public List<List<Integer>> twoSum(int[] nums, int start, int target, boolean needSort) {
-        if (needSort) {
-            Arrays.sort(nums);
-        }
+    public List<List<Integer>> twoSum(int[] nums, int start, int target) {
         int l = start, r = nums.length - 1;
         List<List<Integer>> res = new ArrayList<>();
         while (l < r) {
-            int left = nums[l];
-            int right = nums[r];
+            int left = nums[l], right = nums[r];
             int tmpSum = left + right;
             if (tmpSum < target) {
                 //去掉重复元素

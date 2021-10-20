@@ -1617,6 +1617,10 @@ class Solution {
     List<Integer> list = new ArrayList<>();
     List<List<Integer>> ans = new ArrayList<>();
 
+    public List<List<Integer>> subsets(int[] nums) {
+        subsetsHelper2(nums, list, 0);
+        return ans;
+    }
     public void subsetsHelper2(int[] nums, List<Integer> list, int start) {
         ans.add(new ArrayList<>(list));
         for (int i = start; i < nums.length; i++) {
@@ -1626,10 +1630,7 @@ class Solution {
         }
     }
 
-    public List<List<Integer>> subsets(int[] nums) {
-        subsetsHelper2(nums, list, 0);
-        return ans;
-    }
+
 
     public List<List<Integer>> subsetsFor(int[] nums) {
         int n = nums.length;
