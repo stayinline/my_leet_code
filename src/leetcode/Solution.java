@@ -502,36 +502,6 @@ class Solution {
     }
 
 
-    public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
-        LinkedList<Integer> track = new LinkedList<>();
-        backTrack(nums, track, res);
-        return res;
-    }
-
-    private void backTrack(int[] nums, LinkedList<Integer> track, List<List<Integer>> res) {
-        //这里当数组长度和路径track的长度相等时，退出递归
-        if (track.size() == nums.length) {
-            res.add(new LinkedList<>(track));
-            return;
-        }
-
-        for (int i = 0; i < nums.length; i++) {
-            //判断路径是否包含当前元素，包含说明已经采用过了，不包含时则可以采用
-            if (track.contains(nums[i])) {
-                continue;
-            }
-
-            track.add(nums[i]);
-
-            //递归从头开始寻找可选队列中的元素
-            backTrack(nums, track, res);
-
-            //出递归的时候，一定是上一层中已经选取过当前元素，所以退回到上一层的时候需要把决策树的最后一层去掉
-            track.removeLast();
-        }
-
-    }
 
 
     public static boolean judgeCircle1(String moves) {
