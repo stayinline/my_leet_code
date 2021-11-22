@@ -25,20 +25,4 @@ public class Case91 {
         return cur;
     }
 
-    public static Map<Character, Integer> getMap() {
-        Map<Character, Integer> map = new HashMap<>();
-        char c = 'A';
-        int b = 1;
-        for (int i = 0; i < 26; i++) {
-            map.put(c, b);
-            c++;
-            b++;
-        }
-        return map;
-    }
-
-
-    public static void main(String[] args) {
-        System.out.println(getMap());
-    }
 }
