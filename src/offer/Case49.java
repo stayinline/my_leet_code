@@ -3,14 +3,13 @@ package offer;
 public class Case49 {
 
 
-    class Solution {
         /**
          * 动态规划
          *
          * @param n
          * @return
          */
-        public int nthUglyNumber(int n) {
+        public static int nthUglyNumber(int n) {
             int a = 0, b = 0, c = 0;
             int[] dp = new int[n];
             dp[0] = 1;
@@ -23,7 +22,7 @@ public class Case49 {
             }
             return dp[n - 1];
         }
-    }
+
 
 
     /**
@@ -32,7 +31,7 @@ public class Case49 {
      * @param n
      * @return
      */
-    public static int nthUglyNumber(int n) {
+    public static int nthUglyNumber1(int n) {
         for (int i = 1; n > 0; i++) {
             if (isUgly(i)) n--;
             if (n == 0) return i;
