@@ -25,4 +25,24 @@ public class Case26 {
         }
     }
 
+
+    public boolean isSubStructure(TreeNode A, TreeNode B) {
+        if (A == null || B == null) {
+            return false;
+        }
+        return helper(A, B)
+                || isSubStructure(A.left, B)
+                || isSubStructure(A.right, B);
+    }
+
+    public boolean helper(TreeNode x, TreeNode y) {
+        if (y == null) {
+            return true;
+        }
+        if (x == null || x.val != y.val) {
+            return false;
+        }
+        return helper(x.left, y.left) && helper(x.right, y.right);
+    }
+
 }
