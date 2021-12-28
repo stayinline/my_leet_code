@@ -1,7 +1,7 @@
 package offer;
 
 
-public class Case58 {
+public class Case58_1 {
 
     public static String reverseWords(String s) {
         // 删除首尾空格，分割字符串
@@ -16,6 +16,17 @@ public class Case58 {
         }
         return res.toString().trim();
         // 转化为字符串，删除尾部空格，并返回
+    }
+
+    public static String reverseWords2(String s) {
+        String[] arr = s.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (!"".equals(arr[i])) {
+                sb.append(arr[i]).append(" ");
+            }
+        }
+        return sb.toString().trim();
     }
 
 
