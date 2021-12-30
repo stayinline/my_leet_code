@@ -46,9 +46,8 @@ public class Case34 {
 
     public static void main(String[] args) {
 
-        System.out.println( (double) (2+1)/2);
+        System.out.println((double) (2 + 1) / 2);
     }
-
 
 
 }
