@@ -5,16 +5,22 @@ import leetcode.ListNode;
 public class Case22 {
 
     public static ListNode getKthFromEnd(ListNode head, int k) {
-        ListNode cur = head, prev = head;
+        if (head == null || k < 0) {
+            return null;
+        }
+        ListNode fast = head, slow = head;
+        // 这里的核心是 [slow,fast] 区间的左端点就是目标节点
+        // 所以先让fast前进k次，使得区间长度等于k
         while (k > 0) {
-            cur = cur.next;
+            fast = fast.next;
             k--;
         }
-        while (cur != null) {
-            cur = cur.next;
-            prev = prev.next;
+        // 最后再让slow和fast一起前进，最终返回区间左端点即可
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
         }
-        return prev;
+        return slow;
     }
 
     public static void main(String[] args) {
