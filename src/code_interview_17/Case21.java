@@ -62,7 +62,7 @@ public class Case21 {
             rightMax = Math.max(rightMax, height[j]);
 
             // 存储的雨水量是由较小的一方决定的，木桶短板
-            if (height[i] < height[j]) {
+            if (leftMax < rightMax) {
                 ans += leftMax - height[i];
                 i++;
             } else {
