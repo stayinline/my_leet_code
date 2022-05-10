@@ -3,7 +3,7 @@ package leetcode;
 import java.util.*;
 
 public class Case2035 {
-    public static int minimumDifference1(int[] nums) {
+    public static int minimumDifference(int[] nums) {
         int n = nums.length / 2;
         int sum = Arrays.stream(nums).sum();
         int[] A = new int[n], B = new int[n];
@@ -13,7 +13,7 @@ public class Case2035 {
 
         enumAllSum(n, A, B, X, Y);
 
-        // 将Y进行排序，以便二分查找
+        // 将Y进行排序，以便二分查找,或者将X排序，道理是一样的
         for (int i = 0; i <= n; i++) {
             Collections.sort(Y.get(i));
         }
@@ -34,6 +34,7 @@ public class Case2035 {
                         r = mid;
                     }
                 }
+                // 二分结束后：i:当前元素，l:始终指向那个更接近目标和最小的元素
                 ans = Math.min(ans, Math.abs((sum - i - y.get(l) - (i + y.get(l)))));
             }
         }
@@ -47,6 +48,8 @@ public class Case2035 {
             int key = Integer.bitCount(mask);
             int cnt_a = 0, cnt_b = 0;
             for (int i = 0; i < n; i++) {
+                // mask >> i:表示i这个位置时mask的子集，
+                // ((mask >> i) & 1 :表示判断这个子集是不是msk的子集，==1说明是，否则不是
                 if (((mask >> i) & 1) == 1) {
                     cnt_a += a[i];
                     cnt_b += b[i];
@@ -70,7 +73,7 @@ public class Case2035 {
     }
 
 
-    public static int minimumDifference(int[] nums) {
+    public static int minimumDifference1(int[] nums) {
         // 前 n 个元素元素组合情况存储在left 中, 后 n 个元素组合请情况存储在 right 中
         // Map<元素个数, Set<key个元素的总和>>
         Map<Integer, TreeSet<Integer>> left = new HashMap<>();
@@ -141,7 +144,9 @@ public class Case2035 {
             visited.get(count).add(sum);
         }
 
-        if (idx >= limit) return;
+        if (idx >= limit) {
+            return;
+        }
 
         // 选择当前元素
         dfs(nums, sum + nums[idx], count + 1, idx + 1, limit, visited);
