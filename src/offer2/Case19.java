@@ -2,7 +2,9 @@ package offer2;
 
 public class Case19 {
 
-
+    /**
+     *
+     */
     public static boolean validPalindrome(String s) {
         if (s == null || "".equals(s) || s.length() == 1) {
             return true;
