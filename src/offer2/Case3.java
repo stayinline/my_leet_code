@@ -18,6 +18,7 @@ public class Case3 {
             n &= (n - 1);
             count++;
         }
+
         return count;
     }
 
