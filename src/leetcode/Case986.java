@@ -8,11 +8,7 @@ public class Case986 {
 
 
     public static int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
-        if (firstList == null || firstList.length == 0) {
-            return secondList;
-        } else if (secondList == null || secondList.length == 0) {
-            return firstList;
-        }
+
         List<int[]> ans = new ArrayList<>();
 
         for (int i = 0, j = 0; i < firstList.length && j < secondList.length; ) {
@@ -24,7 +20,7 @@ public class Case986 {
                 ans.add(new int[]{l, r});
             }
 
-            // 判断是谁的边界范围更大，更大的一定是包含另一个的，所以移动较小的拿一个的指针
+            // 判断是谁的边界范围更大，更大的一定是包含另一个的，所以移动较小的那一个的指针
             if (firstList[i][1] < secondList[j][1]) {
                 i++;
             } else {
