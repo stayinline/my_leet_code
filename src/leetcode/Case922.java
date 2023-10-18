@@ -34,12 +34,16 @@ public class Case922 {
 
     public static int[] sortArrayByParityII(int[] nums) {
         int n = nums.length;
-        int j = 1;
-        for (int i = 0; i < n; i += 2) {
+        int i = 0; // i从偶数下标开始
+        int j = 1; // j从偶数下标开始
+        for (; i < n; i += 2) {
+            // i找奇数(说明偶数下标对应的是奇数)
             if (nums[i] % 2 == 1) {
+                // j找偶数(说明奇数下标对应的是偶数)
                 while (nums[j] % 2 == 1) {
                     j += 2;
                 }
+                // 两者交换
                 int tmp = nums[i];
                 nums[i] = nums[j];
                 nums[j] = tmp;
@@ -49,8 +53,9 @@ public class Case922 {
     }
 
 
+
     public static void main(String[] args) {
         int[] nums = {4, 2, 5, 7};
-        System.out.println(Arrays.toString(sortArrayByParityII1(nums)));
+        System.out.println(Arrays.toString(sortArrayByParityII(nums)));
     }
 }
