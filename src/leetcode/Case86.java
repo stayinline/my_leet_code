@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Case86 {
-    public ListNode partition(ListNode head, int x) {
+    public ListNode partition1(ListNode head, int x) {
         if (head == null || head.next == null) {
             return head;
         }
@@ -33,5 +33,25 @@ public class Case86 {
             }
         }
         return pre.next;
+    }
+
+    public ListNode partition(ListNode head, int x) {
+        ListNode low = new ListNode(-1);
+        ListNode lowHead = low;
+        ListNode high = new ListNode(-1);
+        ListNode highHead = high;
+
+        for (ListNode i = head; i != null; i = i.next) {
+            if (i.val < x) {
+                low.next = i;
+                low = low.next;
+            } else {
+                high.next = i;
+                high = high.next;
+            }
+        }
+        high.next = null;// 这里必须设置为null，否则形成了环形链表
+        low.next = highHead.next;
+        return lowHead.next;
     }
 }
