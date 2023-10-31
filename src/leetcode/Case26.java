@@ -5,14 +5,14 @@ import java.util.Arrays;
 public class Case26 {
 
     public static int removeDuplicates(int[] nums) {
-        int i = 0;
-        for (int j = i + 1; j < nums.length; j++) {
-            if (nums[i] != nums[j]) {
-                i++;
-                nums[i] = nums[j];
+        int j = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] != nums[i + 1]) {
+                nums[j + 1] = nums[i + 1];
+                j++;
             }
         }
-        return i + 1;
+        return j + 1;
     }
 
     public static void main(String[] args) {
