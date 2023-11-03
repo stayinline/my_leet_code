@@ -7,7 +7,7 @@ public class Case49 {
 
 
     // 简化groupAnagrams1中的countMap逻辑
-    public List<List<String>> groupAnagrams(String[] strs) {
+    public static List<List<String>> groupAnagrams(String[] strs) {
         if (strs.length == 0) {
             return new ArrayList<>();
         }
