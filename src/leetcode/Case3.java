@@ -5,6 +5,23 @@ import java.util.Set;
 
 public class Case3 {
     public static int lengthOfLongestSubstring(String s) {
+        int ans = 0;
+        Set<Character> set = new HashSet<>();
+        for (int i = 0, j = i; j < s.length(); ) {
+            if (set.contains(s.charAt(j))) {
+                set.remove(s.charAt(i));
+                i++;
+            } else {
+                set.add(s.charAt(j));
+                ans = Math.max(ans, set.size());
+                j++;
+            }
+        }
+        return ans;
+    }
+
+    // 官方答案，不好理解
+    public static int lengthOfLongestSubstring1(String s) {
         Set<Character> set = new HashSet<>();
         int r = 0;
         int res = 0;
@@ -27,7 +44,7 @@ public class Case3 {
     }
 
     public static void main(String[] args) {
-        int ret = lengthOfLongestSubstring("pwwkew");
+        int ret = lengthOfLongestSubstring(" ");
         System.out.println(ret);
 
     }
