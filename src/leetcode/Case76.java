@@ -6,12 +6,14 @@ import java.util.Map;
 
 public class Case76 {
 
-    // t字符串中每个字符出现的次数
-    Map<Character, Integer> tMap = new HashMap<>();
-    // 滑动窗口中每个字符及其出现次数
-    Map<Character, Integer> windowMap = new HashMap<>();
 
-    public String minWindow(String s, String t) {
+    // t字符串中每个字符出现的次数
+    static Map<Character, Integer> tMap = new HashMap<>();
+    // 滑动窗口中每个字符及其出现次数
+    static Map<Character, Integer> windowMap = new HashMap<>();
+
+
+    public static String minWindow(String s, String t) {
         // 边界值判断
         if (s == null || s.length() == 0 || t == null || t.length() == 0) {
             return "";
@@ -26,14 +28,12 @@ public class Case76 {
         }
 
         //定义滑动窗口的左右指针
-        int l = 0, r = -1;
         int len = Integer.MAX_VALUE, ansL = -1, ansR = -1;
-        while (r < sLen) {
-            ++r;
-            if (r < sLen && tMap.containsKey(s.charAt(r))) {
+        for (int l = 0, r = 0; r < sLen; r++) {
+            if (tMap.containsKey(s.charAt(r))) {
                 windowMap.put(s.charAt(r), windowMap.getOrDefault(s.charAt(r), 0) + 1);
             }
-            while (check() && l <= r) {
+            while (check()) {
                 //满足条件则尝试缩小滑动窗口的左指针
                 if (r - l + 1 < len) {
                     len = r - l + 1;
@@ -41,9 +41,9 @@ public class Case76 {
                     ansR = l + len;
                 }
                 if (tMap.containsKey(s.charAt(l))) {
-                    windowMap.put(s.charAt(l), windowMap.getOrDefault(s.charAt(l), 0) - 1);
+                    windowMap.put(s.charAt(l), windowMap.get(s.charAt(l)) - 1);
                 }
-                ++l;
+                l++;
             }
             // 当前滑动窗口不满足之后继续循环，窗口右移
         }
@@ -51,7 +51,7 @@ public class Case76 {
     }
 
     // 判断 windowMap 是否包含全部的 tMap
-    public boolean check() {
+    public static boolean check() {
         Iterator iter = tMap.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry entry = (Map.Entry) iter.next();
@@ -62,6 +62,14 @@ public class Case76 {
             }
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        //System.out.println("abcd".substring(1, 2));
+
+        String s = "a";
+        String t = "a";
+        System.out.println(minWindow(s, t));
     }
 
 }
