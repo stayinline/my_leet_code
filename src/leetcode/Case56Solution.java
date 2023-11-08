@@ -6,7 +6,30 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Case56Solution {
-    public int[][] merge(int[][] intervals) {
+
+    public static int[][] merge(int[][] intervals) {
+        if (intervals.length == 0 || intervals[0].length == 0) {
+            return new int[2][2];
+        }
+        List<int[]> ans = new ArrayList<>();
+        // 按照区间的左端点，将整个数组升序排列
+        // 为什么是comparing(x -> x[0])？因为x表示intervals数组的每个元素，是一个int[2][2]的数组，所以x[0]就是左端点
+        Arrays.sort(intervals, Comparator.comparing(x -> x[0]));
+
+        for (int[] interval : intervals) {
+            int l = interval[0];
+            int r = interval[1];
+            int lastIdx = ans.size() - 1;
+            if (0 == ans.size() || ans.get(lastIdx)[1] < l) {
+                ans.add(new int[]{l, r});
+            } else {
+                ans.get(lastIdx)[1] = Math.max(ans.get(lastIdx)[1], r);
+            }
+        }
+        return ans.toArray(new int[ans.size()][]);
+    }
+
+    public static int[][] merge1(int[][] intervals) {
         if (intervals.length == 0) {
             return new int[0][2];
         }
@@ -30,7 +53,8 @@ public class Case56Solution {
 
     public static void main(String[] args) {
         int[][] intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
-        int[][] merge = new Case56Solution().merge(intervals);
+        System.out.println(Arrays.toString(intervals[0]));
+        int[][] merge = merge(intervals);
         System.out.println(Arrays.deepToString(merge));
 
     }
