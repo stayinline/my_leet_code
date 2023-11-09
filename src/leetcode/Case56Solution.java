@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Case56Solution {
 
@@ -28,6 +29,29 @@ public class Case56Solution {
         }
         return ans.toArray(new int[ans.size()][]);
     }
+
+
+    // 用二层list实现
+    public static List<List<Integer>> merge2(List<List<Integer>> intervals) {
+        if (intervals.size() == 0) {
+            return new ArrayList<>();
+        }
+        List<List<Integer>> ans = new ArrayList<>();
+        // 按照区间的左端点，将整个数组升序排列
+        intervals.sort(Comparator.comparing(list -> list.get(0)));
+
+        for (List<Integer> interval : intervals) {
+            int l = interval.get(0);
+            int r = interval.get(1);
+            if (ans.isEmpty() || ans.get(ans.size() - 1).get(1) < l) {
+                ans.add(Arrays.asList(l, r));
+            } else {
+                ans.get(ans.size() - 1).set(1, Math.max(ans.get(ans.size() - 1).get(1), r));
+            }
+        }
+        return ans;
+    }
+
 
     public static int[][] merge1(int[][] intervals) {
         if (intervals.length == 0) {
@@ -54,7 +78,10 @@ public class Case56Solution {
     public static void main(String[] args) {
         int[][] intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
         System.out.println(Arrays.toString(intervals[0]));
+//        int[][] merge = merge(intervals);
         int[][] merge = merge(intervals);
+//        System.out.println(merge);
+
         System.out.println(Arrays.deepToString(merge));
 
     }
