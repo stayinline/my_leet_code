@@ -5,6 +5,25 @@ package leetcode;
  */
 public class Case13Solution {
 
+    /**
+     * 错误在于         ans += first;这一步是弥补循环的最后一个元素，而不是第一个元素
+     */
+    public int romanToIntError(String s) {
+        int ans = 0;
+        int first = getValue(s.charAt(0));
+        ans += first;
+        for (int i = 1; i < s.length(); i++) {
+            int second = getValue(s.charAt(i));
+            if (first < second) {
+                ans -= first;
+            } else {
+                ans += first;
+            }
+            first = second;
+        }
+        return ans;
+    }
+
     public int romanToInt(String s) {
         int sum = 0;
         int firstNum = getValue(s.charAt(0));
@@ -45,5 +64,10 @@ public class Case13Solution {
     public static void main(String[] args) {
         String s = "III";
         System.out.println(new Case13Solution().romanToInt(s));
+
+        String s2 = "LVIII";
+        System.out.println(new Case13Solution().romanToInt(s2));
+        System.out.println(new Case13Solution().romanToIntError(s2));
+
     }
 }
