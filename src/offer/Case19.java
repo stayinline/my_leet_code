@@ -34,6 +34,10 @@ public class Case19 {
 
     }
 
+    /**
+     * 1、fast是先走n步还是n-1步，是由fast的起始值决定的
+     * 2、slow一定是从前缀节点开始，这样，出循环就刚好是倒数第n个节点的前一个节点
+     */
     public static ListNode removeNthFromEnd(ListNode head, int n) {
         if (head == null || n <= 0) {
             return head;
@@ -59,7 +63,9 @@ public class Case19 {
 
     public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
-        ListNode head = removeNthFromEnd(node1, 1);
+        ListNode node2 = new ListNode(2);
+        node1.next = node2;
+        ListNode head = removeNthFromEnd(node1, 2);
         ListNodeUtil.printList(head);
     }
 }
