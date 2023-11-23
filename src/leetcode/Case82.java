@@ -2,9 +2,35 @@ package leetcode;
 
 import utils.ListNodeUtil;
 
+
+/**
+ * 注意审题，需要的是把重复的全部删除，而不是保留一个
+ */
 public class Case82 {
 
+
     public static ListNode deleteDuplicates(ListNode head) {
+        if (null == head || head.next == null) {
+            return head;
+        }
+        ListNode prev = new ListNode(-200, head);
+        ListNode cur = prev;
+        while (cur.next != null && cur.next.next != null) {
+            ListNode n = cur.next;
+            if (n.val == n.next.val) {
+                int v = n.val;
+                while (n != null && v == n.val) {
+                    cur.next = n.next;
+                    n = n.next;
+                }
+            } else {
+                cur = cur.next;
+            }
+        }
+        return prev.next;
+    }
+
+    public static ListNode deleteDuplicates1(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
