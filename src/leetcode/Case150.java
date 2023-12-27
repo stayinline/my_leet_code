@@ -34,7 +34,36 @@ public class Case150 {
         return stack.pop();
     }
 
-    public boolean isNumber(String token) {
+    public static int evalRPN1(String[] tokens) {
+        Stack<Integer> stack = new Stack<>();
+        for (String s : tokens) {
+            if (isNumber(s)) {
+                stack.push(Integer.parseInt(s));
+            } else {
+                int tmp = 0;
+                int var1 = stack.pop();
+                int var2 = stack.pop();
+                if ("+".equals(s)) {
+                    tmp = var1 + var2;
+                } else if ("-".equals(s)) {
+                    tmp = var2 - var1;
+                } else if ("*".equals(s)) {
+                    tmp = var1 * var2;
+                } else if ("/".equals(s)) {
+                    tmp = var2 / var1;
+                }
+                stack.push(tmp);
+            }
+        }
+        return stack.pop();
+    }
+
+    public static boolean isNumber(String token) {
         return !("+".equals(token) || "-".equals(token) || "*".equals(token) || "/".equals(token));
+    }
+
+    public static void main(String[] args) {
+        String[] tokens = {"10","6","9","3","+","-11","*","/","*","17","+","5","+"};
+        System.out.println(evalRPN1(tokens));
     }
 }
