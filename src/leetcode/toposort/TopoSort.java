@@ -83,14 +83,14 @@ public class TopoSort {
             }
         }
 
-        private void dfs(
-                int vertex, LinkedList<Integer> inverseAdj[], boolean[] visited) {
+        private void dfs(int vertex, LinkedList<Integer> inverseAdj[], boolean[] visited) {
             for (int i = 0; i < inverseAdj[vertex].size(); ++i) {
                 int w = inverseAdj[vertex].get(i);
                 if (visited[w] == true) continue;
                 visited[w] = true;
                 dfs(w, inverseAdj, visited);
-            } // 先把 vertex 这个顶点可达的所有顶点都打印出来之后，再打印它自己
+            }
+            // 先把 vertex 这个顶点可达的所有顶点都打印出来之后，再打印它自己
             System.out.print("->" + vertex);
         }
     }
