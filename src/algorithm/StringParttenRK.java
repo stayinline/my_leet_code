@@ -1,6 +1,8 @@
 package algorithm;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 该算法是暴力匹配的改进版
@@ -12,7 +14,7 @@ import java.util.HashMap;
  */
 public class StringParttenRK {
 
-    public HashMap<Integer, String> hashMap;
+    public HashMap<Integer, Set<String>> hashMap;
 
     public String str;
 
@@ -26,7 +28,9 @@ public class StringParttenRK {
             for (int j = i + 2; j < str.length() - 1; j++) {
                 String cur = str.substring(i, j);
                 Integer key = getHashKey(cur);
-                hashMap.put(key, cur);
+                Set<String> set = hashMap.getOrDefault(key, new HashSet<>());
+                set.add(cur);
+                hashMap.put(key, set);
             }
         }
     }
@@ -45,8 +49,8 @@ public class StringParttenRK {
     public boolean hasSubStr(String a, String b) {
         StringParttenRK rk = new StringParttenRK(a);
         Integer bHashKey = rk.getHashKey(b);
-        String s = rk.hashMap.get(bHashKey);
-        if (b.equals(s)) {
+        Set<String> set = rk.hashMap.get(bHashKey);
+        if (set.contains(b)) {
             return true;
         }
         return false;

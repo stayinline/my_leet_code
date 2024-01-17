@@ -1,4 +1,4 @@
-package code_interview_17;
+package algorithm;
 
 import java.util.LinkedList;
 import java.util.Queue;
