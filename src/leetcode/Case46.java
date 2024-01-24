@@ -11,13 +11,33 @@ public class Case46 {
 
 
     public static List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
+        res.clear();
         LinkedList<Integer> track = new LinkedList<>();
         backTrack(nums, track);
         return res;
     }
 
     private static void backTrack(int[] nums, LinkedList<Integer> track) {
+        if (track.size() == nums.length) {
+            res.add(new ArrayList<>(track));
+            return;
+        }
+
+        for (int num : nums) {
+            if (track.contains(num)) {
+                continue;
+            }
+
+            track.add(num);
+
+            backTrack(nums, track);
+
+            track.removeLast();
+        }
+
+    }
+
+    private static void backTrack1(int[] nums, LinkedList<Integer> track) {
         //这里当数组长度和路径track的长度相等时，退出递归
         if (track.size() == nums.length) {
             res.add(new LinkedList<>(track));
@@ -45,5 +65,9 @@ public class Case46 {
         int[] arr = {1, 2, 3};
         List<List<Integer>> permute = permute(arr);
         System.out.println(permute);
+
+        int[] arr2 = {0,1};
+        List<List<Integer>> permute2 = permute(arr2);
+        System.out.println(permute2);
     }
 }

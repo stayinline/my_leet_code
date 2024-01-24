@@ -35,10 +35,8 @@ public class Case17 {
         } else {
             char curDigit = digits.charAt(index);
             String letters = phoneMap.get(curDigit);
-            int lettersCount = letters.length();
-
             // 遍历可选项，逐个判断
-            for (int i = 0; i < lettersCount; i++) {
+            for (int i = 0; i < letters.length(); i++) {
                 // 当前值加入
                 cur.append(letters.charAt(i));
 
