@@ -1,29 +1,46 @@
 package leetcode;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Case39 {
 
-    public static int majorityElement(int[] nums) {
-        int temp = nums[0]; // 数组第一个元素当做开始
-        int sum = 0; //票数
-        int i = 0;
-        while (i < nums.length) {
-            if (nums[i] == temp) {
-                sum += 1;
-            } else {
-                sum -= 1;
-            }
-            if (sum == 0) {
-                temp = nums[i + 1];
-            }
-            i++;
+    private static List<List<Integer>> result;
+
+    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+        result = new ArrayList<>();
+        if (candidates.length == 0) {
+            return result;
         }
-        return temp;
+        LinkedList<Integer> track = new LinkedList<>();
+        backtrack(track, candidates, target);
+        return result;
+    }
+
+
+    private static void backtrack(LinkedList<Integer> track, int[] candidates, int target) {
+        int sum = 0;
+        for (Integer i : track) {
+            sum += i;
+        }
+        if (target < sum) {
+            return;
+        }
+        if (sum == target) {
+            result.add(new ArrayList<>(track));
+        } else {
+            for (int candidate : candidates) {
+                track.add(candidate);
+                backtrack(track, candidates, target);
+                track.removeLast();
+            }
+        }
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 2, 2, 2, 5, 4, 2};
-        int ret = majorityElement(arr);
-        System.out.println(ret);
+        int[] candidates = {2, 3, 6, 7};
+        System.out.println(combinationSum(candidates, 7));
     }
 
 }
