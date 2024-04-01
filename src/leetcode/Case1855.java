@@ -44,8 +44,21 @@ public class Case1855 {
     }
 
     public static void main(String[] args) {
-        int[] nums1 = {55, 30, 5, 4, 2};
-        int[] nums2 = {100, 20, 10, 10, 5};
-        System.out.println(maxDistance(nums1, nums2));
+//        int[] nums1 = {55, 30, 5, 4, 2};
+//        int[] nums2 = {100, 20, 10, 10, 5};
+//        System.out.println(maxDistance(nums1, nums2));
+        int theWinner = findTheWinner(100, 2);
+        System.out.println(theWinner);
+
     }
+
+    public static int findTheWinner(int n, int k) {
+        int win = 0;
+        for (int i = 2; i <= n; i++) {
+            win = (win + k) % i;
+        }
+        return win + 1;
+    }
+
+
 }
