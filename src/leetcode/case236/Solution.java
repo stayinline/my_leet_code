@@ -3,6 +3,8 @@ package leetcode.case236;
 
 import leetcode.TreeNode;
 
+import java.util.*;
+
 /**
  * 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
  * <p>
@@ -19,9 +21,7 @@ import leetcode.TreeNode;
 public class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         //base case递归出口
-        if (/**1*/null == root
-                ||/**2*/p == root
-                ||/**3*/q == root) {
+        if (/**1*/null == root ||/**2*/p == root ||/**3*/q == root) {
             return root;
         }
 
@@ -43,5 +43,38 @@ public class Solution {
         //c.如果p和q只有一个存在于root为根的树中，返回该节点
         return right == null ? left : right;
     }
+
+    Map<Integer, TreeNode> parent = new HashMap<Integer, TreeNode>();
+    Set<Integer> visited = new HashSet<Integer>();
+
+    public void helper(TreeNode root) {
+        if (root.left != null) {
+            parent.put(root.left.val, root);
+            helper(root.left);
+        }
+        if (root.right != null) {
+            parent.put(root.right.val, root);
+            helper(root.right);
+        }
+    }
+
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        helper(root);
+        // 顺着p向上找
+        while (p != null) {
+            visited.add(p.val);
+            p = parent.get(p.val);
+        }
+
+        // 顺着q向上找，如果p的parent中找到了q，说明p和q的最近公共祖先就是q
+        while (q != null) {
+            if (visited.contains(q.val)) {
+                return q;
+            }
+            q = parent.get(q.val);
+        }
+        return null;
+    }
+
 
 }
