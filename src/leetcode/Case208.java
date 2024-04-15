@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Case208 {
     class Trie {
         private Trie[] children;
@@ -61,11 +64,80 @@ public class Case208 {
 
     }
 
-/**
- * Your Trie object will be instantiated and called as such:
- * Trie obj = new Trie();
- * obj.insert(word);
- * boolean param_2 = obj.search(word);
- * boolean param_3 = obj.startsWith(prefix);
- */
+    /**
+     * Your Trie object will be instantiated and called as such:
+     * Trie obj = new Trie();
+     * obj.insert(word);
+     * boolean param_2 = obj.search(word);
+     * boolean param_3 = obj.startsWith(prefix);
+     */
+    public static class TrieNode {
+        public Map<Character, TrieNode> children;
+        public boolean isEnd;
+
+
+        public TrieNode() {
+            this.children = new HashMap<>();
+            this.isEnd = false;
+
+        }
+
+        public void insert(String word) {
+            TrieNode cur = this;
+            for (Character c : word.toCharArray()) {
+                TrieNode node = cur.children.get(c);
+                if (null == node) {
+                    node = new TrieNode();
+                    cur.children.put(c, node);
+                }
+                cur = node;
+            }
+            cur.isEnd = true;
+        }
+
+        public boolean search(String word) {
+
+            TrieNode ret = find(word);
+
+            return ret != null ? ret.isEnd : false;
+
+        }
+
+        public boolean startsWith(String prefix) {
+
+            TrieNode ret = find(prefix);
+
+            return ret != null;
+
+            // return ret != null? true : false;
+            //  if(ret==null){
+            //     return false;
+            //  }else{
+            //     return true;
+            //  }
+        }
+
+        public TrieNode find(String word) {
+
+            TrieNode cur = this;
+            for (Character c : word.toCharArray()) {
+                TrieNode node = cur.children.get(c);
+                if (null == node) {
+                    return null;
+                }
+                cur = node;
+            }
+            return cur;
+        }
+    }
+
+
+    public static void main(String[] args) {
+        TrieNode trieNode = new TrieNode();
+
+        trieNode.insert("hello");
+
+        System.out.println(trieNode.search("hello"));
+    }
+
 }
