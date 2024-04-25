@@ -37,6 +37,7 @@ public class Case380 {
             if (map.get(val) == null) {
                 return false;
             }
+            // 数组中间位置删除的时候，要挪动尾部最后一个元素到中间空位
             int tailVal = values.get(values.size() - 1);
             int idxOfVal = map.get(val);
 
