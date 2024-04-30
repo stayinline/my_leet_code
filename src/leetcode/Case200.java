@@ -22,12 +22,11 @@ public class Case200 {
     int[][] dirs = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
     void dfs(char[][] grid, int i, int j, int row, int col, boolean[][] visited) {
-        int m = grid.length, n = grid[0].length;
-        if (i < 0 || j < 0 || i >= m || j >= n) {
+        if (i < 0 || j < 0 || i >= row || j >= col) {
             // 超出索引边界
             return;
         }
-        if (visited[i][j]) {
+        if (grid[i][j] == '0' || visited[i][j]) {
             // 已遍历过 (i, j)
             return;
         }
