@@ -7,6 +7,13 @@ public class Case130 {
     private static int m, n;
 
 
+    /**
+     * 这道题的核心就是：有且仅有上下左右四个边中会存在不被包围的，
+     * 所以只需要遍历这四个边中不被包围的即可
+     * 并且，采用深度或者广度都可以
+     *
+     * @param board
+     */
     public static void solve(char[][] board) {
         m = board.length;
         n = board[0].length;
@@ -22,6 +29,7 @@ public class Case130 {
             dfs(board, m - 1, i); // 最下边一行的每一列
         }
 
+        // 然后只需要将a替换成X，同时将原来的O替换成X
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (board[i][j] == 'a') {
