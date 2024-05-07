@@ -30,7 +30,7 @@ public class Case42 {
 
     // 对于每一个下标为i的位置，它能承接的雨水是：
     // water[i]=min(height[i左侧最高的],height[i右侧最高的])-height[i];
-    public static int trap(int[] height) {
+    public static int trap3(int[] height) {
         int ret = 0;
         int len = height.length;
 

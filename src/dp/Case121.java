@@ -3,7 +3,7 @@ package dp;
 public class Case121 {
 
 
-    public int maxProfit(int[] prices) {
+    public static int maxProfit(int[] prices) {
         // base case: dp[-1][0] = 0, dp[-1][1] = -infinity
         int dp_i_0 = 0;//第i天不持股的收益
         int dp_i_1 = Integer.MIN_VALUE; //第i天持股的收益
